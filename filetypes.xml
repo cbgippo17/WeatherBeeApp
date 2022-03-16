@@ -1,0 +1,8 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping pattern="TrumpTweetsJanuary-March2020" type="PLAIN_TEXT" />
+      <mapping pattern="PA05" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>
