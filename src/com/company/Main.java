@@ -1,4 +1,5 @@
 package com.company;
+import com.company.Service;
 
 public class Main {
 
