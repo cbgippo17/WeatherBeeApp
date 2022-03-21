@@ -1,10 +1,10 @@
 # WeatherBeeApp
-This is our project for the American University of Paris Software Enginnering Class, named WeatherBee.
+This is our project for the American University of Paris Software Engineering Class, named WeatherBee.
 
 # Motivation 
 - Beekeeping is a delicate art that is essential for sustaining food production for the world
 - Bees are a temperamental creature whose cooperation with the beekeeper operates closely with the weather 
-- Minimizing the educational barrier to entry of understanding when to interact and assist hives can increase novice beekeepers’ success and hize retention rates
+- Minimizing the educational barrier to entry of understanding when to interact and assist hives can increase novice beekeepers’ success and hive retention rates
 - A poorly managed hive leads to swarms and CCD
 
 # About our Software
