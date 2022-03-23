@@ -1,6 +1,6 @@
-// Instructions for creating DB on localhost SQL Shell server:
+Instructions for creating DB on localhost SQL Shell server:
 
-// One table for each user account created the application
+One table for each user account created the application
 CREATE TABLE accounts (
     user_id serial PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE accounts (
     num_of_hives INT
 );
 
-// One table for the hive data of each user account
+One table for the hive data of each user account
 CREATE TABLE hives (
     user_id INT NOT NULL,
     hive_id INT NOT NULL,
@@ -17,4 +17,4 @@ CREATE TABLE hives (
     location VARCHAR(50) NOT NULL
 );
 
-// Figure out how to grab cloud coverage data based on location provided; what is the best data type to use for location?
+Figure out how to grab cloud coverage data based on location provided; what is the best data type to use for location?
