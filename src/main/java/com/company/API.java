@@ -3,6 +3,7 @@ package com.company;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class API {
     public static void main(String[] args) {
         String sqlSelect = "SELECT * FROM accounts";
 
-        try(Connection conn = DBconnection.createNewDBconnection()){
+        try(Connection conn = DBconnection.connect()){
 
             stmt = conn.createStatement();
             results = stmt.executeQuery(sqlSelect);
@@ -29,11 +30,11 @@ public class API {
 
                 UserAccount userObject = new UserAccount();
 
-                userObject.setId(Integer.valueOf(results.getString("id")));
+                userObject.setId(Integer.valueOf(results.getString("user_id")));
                 userObject.setUsername(results.getString("username"));
                 userObject.setPassword(results.getString("password"));
                 userObject.setEmail(results.getString("email"));
-                userObject.setNumOfHives(Integer.valueOf(results.getString("numOfHives")));
+                userObject.setNumOfHives(Integer.valueOf(results.getString("num_of_hives")));
 
                 usersList.add(userObject);
             }
@@ -50,4 +51,5 @@ public class API {
         }
 
     }
+
 }
