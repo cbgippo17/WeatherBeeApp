@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import io.javalin.Javalin;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,8 +17,10 @@ public class API {
     private static Statement stmt;
     private static ResultSet results;
 
-    public static void main(String[] args) throws JsonProcessingException {
+    public static void main(String[] args) {
         //testing API functions
+        Javalin app = Javalin.create().start(7070);
+        //app.routes()
 
         //testing getAllAccounts
         String allAccountsTest = getAllAccounts();
@@ -31,14 +34,14 @@ public class API {
      * @return -- String JSONOutput containing all account data in JSON format
      */
     public static String getAllAccounts() {
-        String pgSelect = "SELECT * FROM accounts";
+        String selectAllAccounts = "SELECT * FROM accounts";
         List<UserAccount> allAccounts = new ArrayList<UserAccount>();
         String JSONOutput = "";
 
         try(Connection conn = DBconnection.connect()){
 
             stmt = conn.createStatement();
-            results = stmt.executeQuery(pgSelect);
+            results = stmt.executeQuery(selectAllAccounts);
 
             while (results.next()) {
 
