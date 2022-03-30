@@ -16,15 +16,38 @@ public class API {
     private static Statement stmt;
     private static ResultSet results;
 
-    public static void main(String[] args) {
-        String sqlSelect = "SELECT * FROM accounts";
+    public static void main(String[] args) throws JsonProcessingException {
+        //testing API functions
+
+        //testing getAllAccounts
+        List<UserAccount> allAccounts = new ArrayList<UserAccount>();
+        allAccounts = getAllAccounts();
+        String JSONOutput = "";
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            JSONOutput = mapper.writeValueAsString(allAccounts);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(JSONOutput);
+    }
+
+    /**
+     * getAllAccounts
+     *
+     * Select query to database and returns all data within 'accounts' table
+     * @return -- allAccounts array list of UserAccount class
+     */
+    public static List<UserAccount> getAllAccounts() {
+        String pgSelect = "SELECT * FROM accounts";
+        List<UserAccount> allAccounts = new ArrayList<UserAccount>();
 
         try(Connection conn = DBconnection.connect()){
 
             stmt = conn.createStatement();
-            results = stmt.executeQuery(sqlSelect);
-
-            List<UserAccount> usersList = new ArrayList<UserAccount>();
+            results = stmt.executeQuery(pgSelect);
 
             while (results.next()) {
 
@@ -36,20 +59,14 @@ public class API {
                 userObject.setEmail(results.getString("email"));
                 userObject.setNumOfHives(Integer.valueOf(results.getString("num_of_hives")));
 
-                usersList.add(userObject);
+                allAccounts.add(userObject);
             }
-
-            ObjectMapper mapper = new ObjectMapper();
-            String JSONOutput = mapper.writeValueAsString(usersList);
-            System.out.println(JSONOutput);
-
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
         }
 
+        return allAccounts;
     }
 
 }
