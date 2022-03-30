@@ -20,29 +20,20 @@ public class API {
         //testing API functions
 
         //testing getAllAccounts
-        List<UserAccount> allAccounts = new ArrayList<UserAccount>();
-        allAccounts = getAllAccounts();
-        String JSONOutput = "";
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            JSONOutput = mapper.writeValueAsString(allAccounts);
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        System.out.println(JSONOutput);
+        String allAccountsTest = getAllAccounts();
+        System.out.println(allAccountsTest);
     }
 
     /**
      * getAllAccounts
      *
-     * Select query to database and returns all data within 'accounts' table
-     * @return -- allAccounts array list of UserAccount class
+     * Connects to DB, queries and returns all data within 'accounts' table
+     * @return -- String JSONOutput containing all account data in JSON format
      */
-    public static List<UserAccount> getAllAccounts() {
+    public static String getAllAccounts() {
         String pgSelect = "SELECT * FROM accounts";
         List<UserAccount> allAccounts = new ArrayList<UserAccount>();
+        String JSONOutput = "";
 
         try(Connection conn = DBconnection.connect()){
 
@@ -62,11 +53,17 @@ public class API {
                 allAccounts.add(userObject);
             }
 
+            ObjectMapper mapper = new ObjectMapper();
+            JSONOutput = mapper.writeValueAsString(allAccounts);
+
+
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
-        return allAccounts;
+        return JSONOutput;
     }
 
 }
