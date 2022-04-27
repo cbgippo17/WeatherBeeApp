@@ -1,0 +1,37 @@
+Instructions for creating DB on localhost SQL Shell server:
+NOTE: Figure out how to grab cloud coverage data based on location provided; what is the best data type to use for location?
+
+
+One table for each user account created the application:
+CREATE TABLE accounts (
+    user_id serial PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    email VARCHAR(50),
+    num_of_hives INT
+);
+
+
+Insert data into accounts table and return the user_id created:
+INSERT INTO accounts (username, password, email, num_of_hives) VALUES ('johndoe', 'password', 'johndoe@aup.edu', 1) RETURNING user_id;
+
+
+One table for the hive data of each user account:
+CREATE TABLE hives (
+    user_id INT NOT NULL,
+    hive_id INT NOT NULL,
+    PRIMARY KEY (user_id, hive_id),
+    location VARCHAR(50) NOT NULL
+);
+
+
+Insert data into hives table:
+INSERT INTO hives (user_id, hive_id, location) VALUES (1, 1, 'Paris');
+INSERT INTO hives (user_id, hive_id, location) VALUES (1, 2, 'London');
+INSERT INTO hives (user_id, hive_id, location) VALUES (2, 1, 'Paris');
+
+
+Helpful Postgres commands:
+\l - list all databases
+\dt - list all tables in current database
+SELECT * FROM tablename; - shows all data in tablename
