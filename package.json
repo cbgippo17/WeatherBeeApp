@@ -1,0 +1,26 @@
+{
+  "name": "cs3053",
+  "version": "1.0.0",
+  "description": "WeatherBee",
+  "main": "src/main/server.js",
+  "scripts": {
+    "start": "nodemon src/main/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbgippo17/WeatherBeeApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbgippo17/WeatherBeeApp/issues"
+  },
+  "homepage": "https://github.com/cbgippo17/WeatherBeeApp#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express.js": "^1.0.0",
+    "knex": "^2.0.0",
+    "nodemon": "^2.0.16",
+    "pg": "^8.7.3"
+  }
+}
